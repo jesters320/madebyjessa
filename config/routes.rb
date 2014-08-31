@@ -1,6 +1,10 @@
 Madebyjessa::Application.routes.draw do
   get "public/home"
   
+  get 'message', to: 'message#new'
+  post 'message', to: 'message#create'
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
+# Load application ENV vars and merge with existing ENV vars. Loaded here so can use values in initializers.
+ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
+
 module Madebyjessa
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -23,5 +26,19 @@ module Madebyjessa
 	# Adding fonts folder to the assets pipeline
 	config.assets.enabled = true  
 	config.assets.paths << "#{Rails.root}/app/assets/fonts"
+	
+	config.action_mailer.smtp_settings = {
+	  :address              => "smtp.gmail.com",
+	  :port                 => 587,
+	  :domain               => "gmail.com",
+	  :user_name            => ENV['email_username'],
+	  :password             => ENV['email_password'],
+	  :authentication       => :plain,
+	  :enable_starttls_auto => true
+	}
+
+	config.action_mailer.default_url_options = {
+	  :host => "gmail.com"
+	}
   end
 end

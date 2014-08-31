@@ -1,0 +1,12 @@
+defaults: &defaults
+  email_username: username
+  email_password: password
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
