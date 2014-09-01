@@ -26,7 +26,10 @@
 	<a href="http://www.madebyjessa.com">Blog</a>
 </div>
 <div class="center major_links">
-	<a href=<%= message_path() %>>Custom</a>
+	<a  href="#" onclick="return false;" class="trigger_link">Custom</a>
+	<div class="info transparent hidden left">
+		<%= render partial: "message/new" %>
+	</div>
 </div>
 <div class="center major_links">
 	<a href="mailto:jessa@madebyjessa.com">Contact</a>

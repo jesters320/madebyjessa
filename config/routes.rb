@@ -1,7 +1,6 @@
 Madebyjessa::Application.routes.draw do
   get "public/home"
   
-  get 'message', to: 'message#new'
   post 'message', to: 'message#create'
 
   

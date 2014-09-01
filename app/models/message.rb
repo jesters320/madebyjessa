@@ -1,18 +1,35 @@
 class Message
-
+  include ApplicationHelper
+  include MBJConstants
+  
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :name, :email, :subject, :body
+  attr_accessor :name, :email, :additional_details, :products
 
-  validates :name, :email, :subject, :body, :presence => true
-  validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true
+  validates :name, :email, presence: true
+  validates :email, format: { :with => %r{.+@.+\..+} }, :allow_blank => true
   
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+  end
+  
+  def set_products(ids)
+	Rails.logger.debug "inside set_products"
+	ids.each do |id|
+		Rails.logger.debug format_hash_key(MBJConstants::PRODUCTS_LIST.invert[id.to_i])
+		
+		if self.products.nil?
+			self.products = ""
+		else
+			self.products = self.products + ", "
+		end
+		
+		self.products = self.products + format_hash_key(MBJConstants::PRODUCTS_LIST.invert[id.to_i])
+	end
   end
 
   def persisted?

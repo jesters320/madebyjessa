@@ -1,12 +1,12 @@
 class MessageController < ApplicationController
 
-  def new
-    @message = Message.new
-  end
-
   def create
     @message = Message.new(params[:message])
     
+	logger.debug @message.name
+	
+	@message.set_products(params[:product_ids])
+	
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver
       redirect_to(root_path, :notice => "Message was successfully sent.")
@@ -15,5 +15,12 @@ class MessageController < ApplicationController
       render :new
     end
   end
+  
+  private
+  
+	# Never trust parameters from the scary internet, only allow the white list through.
+    def message_params
+      params.require(:message).permit(:name, :email, product_ids: [])
+    end
 
 end
