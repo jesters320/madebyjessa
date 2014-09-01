@@ -1,0 +1,129 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+@font-face {
+	font-family: 'Anodyne'; 
+	src: url('/assets/Anodyne.otf ');
+}
+
+@font-face {
+	font-family: 'Quicksand_Book'; 
+	src: url('/assets/Quicksand_Book.otf ');
+}
+
+body {
+	background-image:url('/assets/background.png ');
+	background-size: 100%;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+	
+	width: 100%;
+	margin: 0 auto;
+}
+
+a:link, a:visited, a:active {
+	font-family: Anodyne, sans-serif;
+	color: #35264f;
+	text-decoration: none;
+	font-size: 35px;
+}
+
+a:hover {
+	color: #b2a8b5;
+}
+
+input[type=text] {
+	border-style: none none dashed none;
+	border-width: 1px;
+	margin: 15px 0 0 0;
+}
+
+textarea {
+	border-style: dashed;
+	border-width: 1px;
+	width: 75%;
+	margin: 5px 0 0 0;
+}
+
+input[type=submit] {
+	font-family: Quicksand_Book, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	line-height: 150%;
+	margin: 0 0 15px 0;
+}
+
+ul {
+	list-style-type:none;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+	text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.full_width {
+    width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.info {
+	font-family: Quicksand_Book, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	line-height: 150%;
+	color: 35264f;
+	
+	margin: 15px 0 15px 0; 
+}
+
+.logo {
+	margin-top: 35px;
+	width: 175px;
+}
+
+.major_links {
+	margin-top: 15px;
+	width: 75%;
+}
+
+.transparent {
+  background:#7f7f7f;
+  background:rgba(255,255,255,0.85);
+}
+
+/* tablets */
+@media only screen 
+and (min-width : 569px) 
+and (max-width : 1024px)  { 
+
+}
+
+/* mobile phones */
+@media only screen  
+and (max-width : 568px) { 
+	.logo {
+		width: 50%;
+	}
+}
