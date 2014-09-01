@@ -1,6 +1,7 @@
 defaults: &defaults
   email_username: username
   email_password: password
+  email_default: email_address
 
 development:
   <<: *defaults

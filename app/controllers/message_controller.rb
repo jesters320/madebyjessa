@@ -9,6 +9,7 @@ class MessageController < ApplicationController
 	
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver
+	  NotificationsMailer.thank_you_message(@message).deliver
       redirect_to(root_path, :notice => "Message was successfully sent.")
     else
       flash.now.alert = "Please fill all fields."
@@ -20,7 +21,7 @@ class MessageController < ApplicationController
   
 	# Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:name, :email, product_ids: [])
+      params.require(:message).permit(:name, :email, :additional_details, product_ids: [])
     end
 
 end

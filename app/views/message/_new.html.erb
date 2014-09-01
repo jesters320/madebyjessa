@@ -9,16 +9,23 @@
       <%= form.text_field :email %>
     </div>
 
-	<p>I would like to know more about...</p>
-	
-	<ul>
-		<% MBJConstants::PRODUCTS_LIST.each do |key, value| %>
-		<li>
-		  <%= check_box_tag "product_ids[]", value %>
-		  <%= format_hash_key(key) %>
-		</li>
-		<% end %>
-	</ul>
+	<div class="field">
+		<p>I would like to know more about...</p>
+		
+		<ul>
+			<% MBJConstants::PRODUCTS_LIST.each do |key, value| %>
+			<li>
+			  <%= check_box_tag "product_ids[]", value %>
+			  <%= format_hash_key(key) %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+  
+	<div class="field">
+      <%= form.label :additional_details %><br>
+      <%= form.text_area :additional_details %>
+    </div>
   
     <%= form.submit "Send" %>
 <% end %>

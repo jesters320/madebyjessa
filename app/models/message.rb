@@ -6,7 +6,7 @@ class Message
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :name, :email, :additional_details, :products
+  attr_accessor :name, :to, :email, :additional_details, :products
 
   validates :name, :email, presence: true
   validates :email, format: { :with => %r{.+@.+\..+} }, :allow_blank => true
