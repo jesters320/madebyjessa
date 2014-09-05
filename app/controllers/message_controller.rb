@@ -12,8 +12,8 @@ class MessageController < ApplicationController
 	  NotificationsMailer.thank_you_message(@message).deliver
       redirect_to(root_path, :notice => "Message was successfully sent.")
     else
-      flash.now.alert = "Please fill all fields."
-      render :new
+	  flash[:error] = @message.errors.full_messages.join(" and ")
+      render "public/home"
     end
   end
   

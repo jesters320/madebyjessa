@@ -8,8 +8,8 @@ class Message
 
   attr_accessor :name, :to, :email, :additional_details, :products
 
-  validates :name, :email, presence: true
-  validates :email, format: { :with => %r{.+@.+\..+} }, :allow_blank => true
+  validates :name, :email, presence: { message: "is missing" }
+  validates :email, format: { with: %r{.+@.+\..+}, message: "should be ___@___.___" }, :allow_blank => true
   
   def initialize(attributes = {})
     attributes.each do |name, value|
@@ -19,6 +19,9 @@ class Message
   
   def set_products(ids)
 	Rails.logger.debug "inside set_products"
+	
+	return if ids.nil?
+	
 	ids.each do |id|
 		Rails.logger.debug format_hash_key(MBJConstants::PRODUCTS_LIST.invert[id.to_i])
 		

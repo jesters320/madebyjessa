@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <%= form_for @message, :url => message_path do |form| %>
     <div class="field">
       <%= form.label :name %>

@@ -1,36 +1,41 @@
 <div class="logo center">
 	<%= image_tag asset_path("logo.png"), {class: "full_width"} %>
 </div>
-<div class="center major_links">
-	<a  href="#" onclick="return false;" class="trigger_link">About</a>
+
+<div class="center major_block">
+	<a  href="#" onclick="return false;" class="trigger_link major_link">About</a>
 	<div class="info transparent hidden">
-	<p>made by jessa | odds and ends is a design blog written to inspire and to share well-designed home decor, architecture, wedding ideas, stationery, fashion, books, fonts, and anything else that makes the world a prettier place.</p>
-
-	<p>jessa butler is a designer, creative thinker, and marketing guru. her loves include brian, the beach, running, anything paper, and traveling. she currently lives in conshohocken with her awesome husband.</p>
-
-	<p>september 1, 2010...</p>
-
-	<p>with the support and love of my family and friends, i have decide to live my dream. to be a creator. a crafter. an artist. i quit my job and decided to take the jump. to start my own business and follow my heart.</p>
-
-	<p>it began with the book, the alchemist, given to me by my sister for christmas and finished with my husband asking me, "what are you waiting for?" so here i am, the master of my own future.</p>
-
-	<p>i will be blogging every day (or almost every day), designing full-time for life's biggest events, creating handmade decor, and most of all loving life. hope you join me on my journey!</p>
-
-	<p>*a big, dinosaur-size thank you to everyone who is helping me make this dream a reality!*</p>
+		<p>made by jessa is a stationery + design studio based in the philadelphia area. founded in 2010 by jessica butler, made by jessa originally began only as a custom design service and has now evolved to include packaged paper goods and home decor, such as wire art and wall prints, available in our <a href="https://www.etsy.com/shop/madebyjessa" class="text_link">etsy shop</a>. the company continues to specialize in custom design, print and production serving brides, party planners, small businesses, and people who appreciate good design around the world (thank goodness for email!). </p>
 	</div>
 </div>
-<div class="center major_links">
-	<a href="https://www.etsy.com/shop/madebyjessa">Shop</a>
+
+<div class="center major_block">
+	<a href="https://www.etsy.com/shop/madebyjessa" class="major_link">Shop</a>
 </div>
-<div class="center major_links">
-	<a href="http://www.madebyjessa.com">Blog</a>
+
+<div class="center major_block">
+	<a href="http://www.madebyjessa.com" class="major_link">Blog</a>
 </div>
-<div class="center major_links">
-	<a  href="#" onclick="return false;" class="trigger_link">Custom</a>
-	<div class="info transparent hidden left">
+
+<div class="center major_block">
+	<a  href="#" onclick="return false;" class="trigger_link major_link">Custom</a>
+	<div class="info transparent hidden">
+		<p>i love doing custom work and creating something unique for each client or event. most importantly, getting married on a budget doesn't mean you can't have custom paper goods! my design style is clean, elegant, sophisticated, and simple reflecting your personality with a touch of humor. i like to have all kinds of details about your event and together we will create something beautiful and exactly what you want. from baby shower invites and placecards to wire names and personalized prints, please contact me at jessa@madebyjessa.com to start your custom project! i look forward to making your paper dreams come to life!</p>
+	</div>
+</div>
+
+<div class="center major_block">
+	<a  href="#" onclick="return false;" class="trigger_link major_link">Wedding</a>
+	<div class="info transparent hidden">
+		<p>to start the design process, please copy and paste the questionnaire into an email for me to get a better feel for your project, wedding, and style. please email me with your details at jessa@madebyjessa.com. thanks!</p>
+		
+		
+	</div>
+</div>
+
+<div class="center major_block">
+	<a  href="#" onclick="return false;" class="trigger_link major_link">Contact</a>
+	<div class="info transparent <%= "hidden" if @message.errors.count < 1 and flash[:notice].nil? %> left">
 		<%= render partial: "message/new" %>
 	</div>
-</div>
-<div class="center major_links">
-	<a href="mailto:jessa@madebyjessa.com">Contact</a>
 </div>

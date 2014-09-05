@@ -8,22 +8,23 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+
+
  */
+
 
 @font-face {
 	font-family: 'Anodyne'; 
-	src: url('<%= asset_path("Anodyne.otf") %> ');
+	src: url('/assets/Anodyne.otf ');
 }
 
 @font-face {
 	font-family: 'Quicksand_Book'; 
-	src: url('<%= asset_path("Quicksand_Book.otf") %> ');
+	src: url('/assets/Quicksand_Book.otf ');
 }
 
 body {
-	background-image:url('<%= asset_path("background.png") %> ');
+	background-image:url('/assets/background.png ');
 	background-size: 100%;
 	background-repeat: no-repeat;
     background-attachment: fixed;
