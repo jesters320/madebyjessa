@@ -4,7 +4,7 @@
 
 <div class="center major_block">
 	<a  href="#" onclick="return false;" class="trigger_link major_link">About</a>
-	<div class="info transparent hidden">
+	<div class="info text transparent hidden">
 		<p>made by jessa is a stationery + design studio based in the philadelphia area. founded in 2010 by jessica butler, made by jessa originally began only as a custom design service and has now evolved to include packaged paper goods and home decor, such as wire art and wall prints, available in our <a href="https://www.etsy.com/shop/madebyjessa" class="text_link">etsy shop</a>. the company continues to specialize in custom design, print and production serving brides, party planners, small businesses, and people who appreciate good design around the world (thank goodness for email!). </p>
 	</div>
 </div>
@@ -19,14 +19,14 @@
 
 <div class="center major_block">
 	<a  href="#" onclick="return false;" class="trigger_link major_link">Custom</a>
-	<div class="info transparent hidden">
+	<div class="info text transparent hidden">
 		<p>i love doing custom work and creating something unique for each client or event. most importantly, getting married on a budget doesn't mean you can't have custom paper goods! my design style is clean, elegant, sophisticated, and simple reflecting your personality with a touch of humor. i like to have all kinds of details about your event and together we will create something beautiful and exactly what you want. from baby shower invites and placecards to wire names and personalized prints, please contact me at jessa@madebyjessa.com to start your custom project! i look forward to making your paper dreams come to life!</p>
 	</div>
 </div>
 
 <div class="center major_block">
 	<a  href="#" onclick="return false;" class="trigger_link major_link">Wedding</a>
-	<div class="info transparent hidden">
+	<div class="info text transparent hidden">
 		<p>to start the design process, please copy and paste the questionnaire into an email for me to get a better feel for your project, wedding, and style. please email me with your details at jessa@madebyjessa.com. thanks!</p>
 		
 		
@@ -35,7 +35,7 @@
 
 <div class="center major_block">
 	<a  href="#" onclick="return false;" class="trigger_link major_link">Contact</a>
-	<div class="info transparent <%= "hidden" if @message.errors.count < 1 and flash[:notice].nil? %> left">
+	<div class="info text transparent <%= "hidden" if @message.errors.count < 1 and flash[:notice].nil? %> left">
 		<%= render partial: "message/new" %>
 	</div>
 </div>

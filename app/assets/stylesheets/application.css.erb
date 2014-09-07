@@ -24,8 +24,8 @@
 
 body {
 	background-image:url('<%= asset_path("background.png") %> ');
-	background-size: 100%;
-	background-repeat: no-repeat;
+	background-size: 400px;
+	background-repeat: repeat-x;
     background-attachment: fixed;
     background-position: bottom;
 	
@@ -93,6 +93,14 @@ ul {
 	display: inline; 
 }
 
+.footer {	
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	height:30px;
+	width:100%;
+}
+
 .full_width {
     width: 100%;
 }
@@ -102,12 +110,6 @@ ul {
 }
 
 .info {
-	font-family: Quicksand_Book, sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 1.5px;
-	line-height: 150%;
-	color: 35264f;
-	
 	margin: 15px 0 15px 0; 
 	padding: 5% 10% 5% 10%;
 }
@@ -124,6 +126,14 @@ ul {
 
 .major_link {
 	font-size: 35px;
+}
+
+.text {
+	font-family: Quicksand_Book, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	line-height: 150%;
+	color: 35264f;
 }
 
 .text_link {
