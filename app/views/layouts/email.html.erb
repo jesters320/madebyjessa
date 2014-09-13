@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html style="min-height:100%; height:auto !important; height:100%;">
+<head>
+  <title>Madebyjessa</title>
+</head>
+<body style="min-height:100%;">
+	
+	<table style="width:760px; min-height:200px;">
+		<tr style="height:100px">
+			<td colspan="3"><%= image_tag asset_path("email_logo.jpg") %></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= yield %>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:30px">
+			<td colspan="3" style="text-align: center;">
+				<span>&copy; <%= Time.now.year %> made by jessa co.</span>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

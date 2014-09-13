@@ -9,6 +9,9 @@ class NotificationsMailer < ActionMailer::Base
   
   def thank_you_message(message)
 	@message = message
-	mail(to: @message.email, subject: 'Thanks for inquiring!!!')
+	mail(to: @message.email, subject: 'Thanks for inquiring!!!') do |format|
+		format.html { render layout: 'email.html.erb' }
+		format.text
+	end
   end
 end
