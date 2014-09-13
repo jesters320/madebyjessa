@@ -18,7 +18,14 @@
 $( document ).ready(function() {
 		$(".trigger_link").click(
 		  function() {
+			// open the info div
 			$(this).next("div.info").slideToggle();
+			
+			// scroll to the top of the link
+			$('html, body').animate(
+				{scrollTop: $(this).offset().top},
+				2000
+				);
 		  }
 		);
   });

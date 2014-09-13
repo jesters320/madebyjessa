@@ -6,20 +6,34 @@
 <body style="min-height:100%;">
 	
 	<table style="width:760px; min-height:200px;">
+		<tr>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+			<td style="width:10%;"></td>
+		</tr>
 		<tr style="height:100px">
-			<td colspan="3"><%= image_tag 'http://madebyjessa.herokuapp.com/assets/email_logo-fe74a23ccbdfc858306686eeff81edab.jpg' %></td>
+			<td colspan="10"><%= image_tag 'http://madebyjessa.herokuapp.com/assets/email_logo-fe74a23ccbdfc858306686eeff81edab.jpg' %></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>
+			<td colspan="8">
 				<%= yield %>
 			</td>
 			<td></td>
 		</tr>
-		<tr style="height:30px">
-			<td colspan="3" style="text-align: center;">
+		<tr style="height:30px;">
+			<td colspan="2"></td>
+			<td colspan="6" style="text-align: center; border-style: dashed none none none; border-width: 1px;">
 				<span>&copy; <%= Time.now.year %> made by jessa co.</span>
 			</td>
+			<td colspan="2"></td>
 		</tr>
 	</table>
 
