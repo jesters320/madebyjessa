@@ -26,7 +26,7 @@
 
 <div class="center major_block">
 	<a  href="#" onclick="return false;" class="trigger_link major_link">Contact</a>
-	<div class="info text transparent <%= "hidden" if @message.errors.count < 1 and flash[:notice].nil? %> left">
+	<div class="info text transparent <%= "hidden" if @message.errors.count < 1 and flash[:notice].nil? and flash[:error].nil? %> left">
 		<%= render partial: "message/new" %>
 	</div>
 </div>

@@ -1,10 +1,21 @@
 class MessageController < ApplicationController
 
   def create
-    @message = Message.new(params[:message])
-    
-	logger.debug @message.name
+    logger.debug params[:message]
 	
+	if !params[:message][:about].empty?
+		@message = Message.new
+		logger.debug "about wasn't empty"
+		logger.debug "!" + params[:message][:about] + "!"
+		logger.debug "empty: " + params[:message][:about].empty?.to_s
+		flash[:error] = "sorry, something doesn't seem right."
+		render "public/home" and return
+	end
+	
+	params[:message].delete :about
+	
+	@message = Message.new(params[:message])
+    	
 	@message.set_products(params[:product_ids])
 	
     if @message.valid?
@@ -21,7 +32,7 @@ class MessageController < ApplicationController
   
 	# Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:name, :email, :additional_details, product_ids: [])
+      params.require(:message).permit(:about, :name, :email, :additional_details, product_ids: [])
     end
 
 end

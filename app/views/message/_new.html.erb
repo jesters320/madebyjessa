@@ -3,6 +3,11 @@
 <% end %>
 
 <%= form_for @message, :url => message_path do |form| %>
+	<div class="field move">
+      <label for="message_about">About</label>
+      <input id="message_about" name="message[about]" type="text" />
+    </div>
+
     <div class="field">
       <%= form.label :name %>
       <%= form.text_field :name %>
