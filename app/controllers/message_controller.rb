@@ -19,9 +19,16 @@ class MessageController < ApplicationController
 	@message.set_products(params[:product_ids])
 	
     if @message.valid?
-      NotificationsMailer.new_message(@message).deliver
-	  NotificationsMailer.thank_you_message(@message).deliver
-      redirect_to(root_path, :notice => "Message was successfully sent.")
+	  begin
+		NotificationsMailer.new_message(@message).deliver
+		NotificationsMailer.thank_you_message(@message).deliver
+		redirect_to(root_path, :notice => "Message was successfully sent.")
+	  rescue Exception => exc
+	     logger.error ("Error in creating messages:: #{exc.message}")
+	     flash[:error] = "sorry, something doesn't seem right."
+		 render "public/home" and return
+	  end
+
     else
 	  flash[:error] = @message.errors.full_messages.join(" and ")
       render "public/home"
