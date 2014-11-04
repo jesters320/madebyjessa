@@ -18,7 +18,7 @@ class Message
   end
   
   def set_products(ids)
-	Rails.logger.debug "inside set_products"
+	Rails.logger.info "inside set_products"
 	
 	return if ids.nil?
 	
