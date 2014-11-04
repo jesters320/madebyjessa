@@ -1,13 +1,13 @@
 class MessageController < ApplicationController
 
   def create
-    logger.debug params[:message]
+    logger.info params[:message]
 	
 	if !params[:message][:about].empty?
 		@message = Message.new
-		logger.debug "about wasn't empty"
-		logger.debug "!" + params[:message][:about] + "!"
-		logger.debug "empty: " + params[:message][:about].empty?.to_s
+		logger.info "about wasn't empty"
+		logger.info "!" + params[:message][:about] + "!"
+		logger.info "empty: " + params[:message][:about].empty?.to_s
 		flash[:error] = "sorry, something doesn't seem right."
 		render "public/home" and return
 	end
