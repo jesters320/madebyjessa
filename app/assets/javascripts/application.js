@@ -28,5 +28,7 @@ $( document ).ready(function() {
 				);
 		  }
 		);
+		
+		$(".address").offset({left: 1, top: -250}).css({"position" : "absolute"});
   });
 
