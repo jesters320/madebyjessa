@@ -29,6 +29,6 @@ $( document ).ready(function() {
 		  }
 		);
 		
-		$(".address").offset({left: 1, top: -250}).css({"position" : "absolute"});
+		$(".address").offset({left: -5000}).css({"position" : "absolute"});
   });
 
