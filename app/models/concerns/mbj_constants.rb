@@ -18,4 +18,6 @@ module MBJConstants
 	other:15
   }
   
+  MISC_ERROR = "sorry, something doesn't seem right."
+  
 end

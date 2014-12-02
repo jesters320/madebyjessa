@@ -3,16 +3,11 @@ class MessageController < ApplicationController
   def create
     logger.info params[:message]
 	
-	if !params[:message][:about].empty?
+	if check_for_bot
 		@message = Message.new
-		logger.info "about wasn't empty"
-		logger.info "!" + params[:message][:about] + "!"
-		logger.info "empty: " + params[:message][:about].empty?.to_s
-		flash[:error] = "sorry, something doesn't seem right."
+		@today = Date.today
 		render "public/home" and return
 	end
-	
-	params[:message].delete :about
 	
 	@message = Message.new(params[:message])
     	
@@ -37,9 +32,36 @@ class MessageController < ApplicationController
   
   private
   
+	def check_for_bot
+		bot = false
+		
+		# check for form fillers with honeypot
+		if !params[:message][:about].empty?
+			bot = true
+			bot_detected("about wasn't empty", params[:message][:about])
+		end
+		
+		# check for playback bots with date
+		if params[:message][:now].empty? || params[:message][:now].to_date < (Date.today - 2.days)
+			bot = true
+			bot_detected("now seemed off", params[:message][:now])
+		end
+		
+		params[:message].delete :about
+		params[:message].delete :now
+		
+		bot
+	end
+	
+	def bot_detected(error_message, error_value)
+		logger.info error_message
+		logger.info "!" + error_value + "!"
+		flash[:error] = MBJConstants::MISC_ERROR
+	end
+  
 	# Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:about, :name, :email, :additional_details, product_ids: [])
+      params.require(:message).permit(:now, :about, :name, :email, :additional_details, product_ids: [])
     end
 
 end

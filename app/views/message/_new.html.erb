@@ -3,6 +3,10 @@
 <% end %>
 
 <%= form_for @message, :url => message_path do |form| %>
+	<div class="field hidden">
+      <input id="message_now" name="message[now]" type="text" value="<%= @today %>" />
+    </div>
+	
 	<div class="field address">
       <label for="message_about">About</label>
       <input id="message_about" name="message[about]" type="text" />
