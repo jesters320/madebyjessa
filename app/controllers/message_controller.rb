@@ -2,10 +2,10 @@ class MessageController < ApplicationController
 
   def create
     logger.info params[:message]
+	@today = Date.today
 	
 	if check_for_bot
 		@message = Message.new
-		@today = Date.today
 		render "public/home" and return
 	end
 	
