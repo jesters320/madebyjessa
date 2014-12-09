@@ -6,23 +6,31 @@ class Message
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :name, :to, :email, :additional_details, :products
+  attr_accessor :name, :to, :email, :additional_details, :product_ids, :products
 
   validates :name, :email, presence: { message: "is missing" }
+  validates :products, presence: { message: "haven't been selected" }
   validates :email, format: { with: %r{.+@.+\..+}, message: "should be ___@___.___" }, :allow_blank => true
   
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+	self.set_products
+	Rails.logger.info self.products
   end
   
-  def set_products(ids)
+  def product_checked(value)
+	return false if self.product_ids.nil?
+	self.product_ids.include? value
+  end
+  
+  def set_products
 	Rails.logger.info "inside set_products"
 	
-	return if ids.nil?
+	return if self.product_ids.nil?
 	
-	ids.each do |id|
+	product_ids.each do |id|
 		Rails.logger.debug format_hash_key(MBJConstants::PRODUCTS_LIST.invert[id.to_i])
 		
 		if self.products.nil?

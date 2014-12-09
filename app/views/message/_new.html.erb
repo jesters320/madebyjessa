@@ -28,7 +28,7 @@
 		<ul>
 			<% MBJConstants::PRODUCTS_LIST.each do |key, value| %>
 			<li>
-			  <%= check_box_tag "product_ids[]", value %>
+			  <%= check_box_tag "message[product_ids][]", value, @message.product_checked(value.to_s) %>
 			  <%= format_hash_key(key) %>
 			</li>
 			<% end %>

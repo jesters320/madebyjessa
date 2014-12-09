@@ -13,7 +13,7 @@ class MessageController < ApplicationController
 	
 	@message = Message.new(params[:message])
     	
-	@message.set_products(params[:product_ids])
+	#@message.set_products(params[:product_ids])
 	
     if @message.valid?
 	  begin
@@ -68,7 +68,7 @@ class MessageController < ApplicationController
   
 	# Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:now, :about, :name, :email, :additional_details, product_ids: [])
+      params.require(:message).permit(:now, :about)
     end
 	
 	def send_through_mandrill
