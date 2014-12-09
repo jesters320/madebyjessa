@@ -26,19 +26,5 @@ module Madebyjessa
 	# Adding fonts folder to the assets pipeline
 	config.assets.enabled = true  
 	config.assets.paths << "#{Rails.root}/app/assets/fonts"
-	
-	config.action_mailer.smtp_settings = {
-	  :address              => "smtp.gmail.com",
-	  :port                 => 587,
-	  :domain               => "gmail.com",
-	  :user_name            => ENV['email_username'],
-	  :password             => ENV['email_password'],
-	  :authentication       => :plain,
-	  :enable_starttls_auto => true
-	}
-
-	config.action_mailer.default_url_options = {
-	  :host => "gmail.com"
-	}
   end
 end

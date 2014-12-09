@@ -1,3 +1,5 @@
+require 'mandrill'
+
 class MessageController < ApplicationController
 
   def create
@@ -15,8 +17,13 @@ class MessageController < ApplicationController
 	
     if @message.valid?
 	  begin
-		NotificationsMailer.new_message(@message).deliver
-		NotificationsMailer.thank_you_message(@message).deliver
+		# old mailer logic
+		#NotificationsMailer.new_message(@message).deliver
+		#NotificationsMailer.thank_you_message(@message).deliver
+		
+		# mandrill logic to send mail
+		send_through_mandrill
+		
 		redirect_to(root_path, :notice => "Message was successfully sent.")
 	  rescue Exception => exc
 	     logger.error ("Error in creating messages:: #{exc.message}")
@@ -63,5 +70,46 @@ class MessageController < ApplicationController
     def message_params
       params.require(:message).permit(:now, :about, :name, :email, :additional_details, product_ids: [])
     end
+	
+	def send_through_mandrill
+		logger.info "inside send_through_mandrill"
+	
+		m = Mandrill::API.new
+		mandrill_inquiry_message = {  
+		 :subject=> "Inquiry from " + @message.name,  
+		 :from_name=> "made by jessa",  
+		 :text=>"here is the info...",  
+		 :to=>[  
+		   {  
+			 :email=> ENV['email_to'],  
+			 :name=> "the boss"  
+		   }  
+		 ],  
+		 :html=>@message.inquiry_html,  
+		 :from_email=>ENV['email_username'] 
+		}  
+		sending = m.messages.send mandrill_inquiry_message
+		
+		logger.info "inquiry response"
+		logger.info sending
+		
+		mandrill_thank_you_message = {  
+		 :subject=> "Thanks for inquiring!!!",  
+		 :from_name=> "made by jessa",   
+		 :to=>[  
+		   {  
+			 :email=> @message.email,  
+			 :name=> @message.name  
+		   }  
+		 ],  
+		 :html=>@message.thank_you_html,  
+		 :from_email=>ENV['email_username'] 
+		}  
+		sending = m.messages.send mandrill_thank_you_message
+		
+		logger.info "thank you response"
+		logger.info sending
+		
+	end
 
 end
