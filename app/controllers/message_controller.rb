@@ -4,7 +4,7 @@ class MessageController < ApplicationController
 
   def create
     logger.info params[:message]
-	@today = Date.today
+	@today = Time.now
 	
 	if check_for_bot
 		@message = Message.new
@@ -40,16 +40,20 @@ class MessageController < ApplicationController
   private
   
 	def check_for_bot
+		logger.info "check for bot"
 		bot = false
 		
+		logger.info "check honeypot"
 		# check for form fillers with honeypot
 		if !params[:message][:about].empty?
 			bot = true
 			bot_detected("about wasn't empty", params[:message][:about])
 		end
 		
+		logger.info "check quick bot"
+		logger.info "Submission time - " + (Time.now - Time.parse(params[:message][:now])).to_s
 		# check for playback bots with date
-		if params[:message][:now].empty? || params[:message][:now].to_date < (Date.today - 2.days)
+		if params[:message][:now].empty? || Time.now - Time.parse(params[:message][:now]) <= 10
 			bot = true
 			bot_detected("now seemed off", params[:message][:now])
 		end
