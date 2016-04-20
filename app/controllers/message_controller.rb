@@ -122,7 +122,7 @@ class MessageController < ApplicationController
 	def send_through_sendgrid
 		logger.info "inside send_through_sendgrid"
 	
-		client = SendGrid::Client.new(api_key: ENV['SENDGRID_APIKEY'])
+		client = SendGrid::Client.new(api_key: ENV['EMAIL_APIKEY'])
 		
 		sendgrid_inquiry_message = SendGrid::Mail.new do |m|
 		  m.to = ENV['email_to']
