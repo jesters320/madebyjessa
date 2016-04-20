@@ -1,4 +1,5 @@
-require 'mandrill'
+# require 'mandrill'
+require 'openssl'
 
 class MessageController < ApplicationController
 
@@ -18,11 +19,13 @@ class MessageController < ApplicationController
     if @message.valid?
 	  begin
 		# old mailer logic
-		#NotificationsMailer.new_message(@message).deliver
+		#NotificationsMailer.test_message.deliver
+		
 		#NotificationsMailer.thank_you_message(@message).deliver
 		
-		# mandrill logic to send mail
-		send_through_mandrill
+		# logic to send mail through transactional email client
+		#send_through_mandrill
+		send_through_sendgrid
 		
 		redirect_to(root_path, :notice => "Message was successfully sent.")
 	  rescue Exception => exc
@@ -113,6 +116,45 @@ class MessageController < ApplicationController
 		
 		logger.info "thank you response"
 		logger.info sending
+		
+	end
+	
+	def send_through_sendgrid
+		logger.info "inside send_through_sendgrid"
+	
+		client = SendGrid::Client.new(api_key: ENV['SENDGRID_APIKEY'])
+		
+		sendgrid_inquiry_message = SendGrid::Mail.new do |m|
+		  m.to = ENV['email_to']
+		  m.to_name = "the boss"
+		  m.from = ENV['email_username']
+		  m.from_name = "made by jessa"
+		  m.subject = "Inquiry from " + @message.name
+		  m.html = @message.inquiry_html
+		end
+		
+		logger.info "sending inquiry"
+		inquiry_response = client.send(sendgrid_inquiry_message)
+		
+		logger.info "inquiry response"
+		logger.info inquiry_response.code
+		logger.info inquiry_response.body
+
+		sendgrid_thank_you_message = SendGrid::Mail.new do |m|
+		  m.to = @message.email
+		  m.to_name = @message.name
+		  m.from = ENV['email_username']
+		  m.from_name = "made by jessa"
+		  m.subject = "Thanks for inquiring!!!"
+		  m.html = @message.thank_you_html
+		end
+		
+		logger.info "sending thank you"
+		thank_you_response = client.send(sendgrid_thank_you_message)
+		
+		logger.info "thank you response"
+		logger.info thank_you_response.code
+		logger.info thank_you_response.body
 		
 	end
 

@@ -1,7 +1,7 @@
 defaults: &defaults
-  email_username: username
-  email_password: password
-  email_to: email_address
+  email_username: 
+  email_to: 
+  EMAIL_APIKEY: 
 
 development:
   <<: *defaults

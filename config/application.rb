@@ -25,6 +25,6 @@ module Madebyjessa
 	
 	# Adding fonts folder to the assets pipeline
 	config.assets.enabled = true  
-	config.assets.paths << "#{Rails.root}/app/assets/fonts"
+	config.assets.paths << "#{Rails.root}/app/assets/fonts"	
   end
 end

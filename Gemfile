@@ -5,7 +5,7 @@ gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
-  gem 'sqlite3', '1.3.9'
+  gem 'sqlite3', '1.3.11'
 end
 
 gem 'sass-rails', '~> 4.0.0'
@@ -15,7 +15,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # for transactional emails
-gem 'mandrill-api', '~> 1.0.53'
+# gem 'mandrill-api', '~> 1.0.53'
+gem 'sendgrid-ruby'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
